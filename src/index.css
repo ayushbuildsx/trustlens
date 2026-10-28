@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #F4F1EA;
+  --paper-2: #EBE6DB;
+  --ink: #1A1A1A;
+  --ink-2: #4A4741;
+  --ink-3: #8A857A;
+  --line: #1A1A1A;
+  --line-hairline: rgba(26, 26, 26, 0.15);
+  --accent: #D93A1F;
+  --safe: #5C6B3A;
+  --warn: #B7791F;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography helper utilities */
+.font-fraunces {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+.font-inter {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Subtle ruled paper background for textarea (the only allowed gradient) */
+.ruled-paper {
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    rgba(26, 26, 26, 0.05) 31px,
+    rgba(26, 26, 26, 0.05) 32px
+  );
+  background-attachment: local;
+  line-height: 32px;
+}
+
+/* Focus styles strictly following guidelines: 2px accent outline with 2px offset */
+*:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Custom styled select without browser chrome */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Custom paper checkbox with 1px ink border */
+.paper-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--ink);
+  background-color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 4px;
+  flex-shrink: 0;
+  border-radius: 0px;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.paper-checkbox:checked {
+  background-color: var(--ink);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' stroke='%23F4F1EA' stroke-width='2.2' stroke-linecap='square' stroke-linejoin='miter' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 8.5L6.5 12L13 4.5'/%3E%3C/svg%3E");
+  background-size: 11px 11px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Print/case file report card tilt (0.4deg on desktop, reset to 0 on mobile) */
+@media (min-width: 900px) {
+  .case-paper-rotate {
+    transform: rotate(0.4deg);
+    transition: transform 0.2s ease;
+  }
+}
+@media (max-width: 899px) {
+  .case-paper-rotate {
+    transform: none;
+  }
+}
+
+/* Rubber stamp styles */
+.stamp-likely-fake {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+.stamp-suspicious {
+  border: 2px solid var(--warn);
+  color: var(--warn);
+}
+.stamp-looks-safe {
+  border: 2px solid var(--safe);
+  color: var(--safe);
+}
+
+/* Thud-in animation: scale 1.15 to 1 over 150ms */
+@keyframes stampThud {
+  0% {
+    transform: rotate(-4deg) scale(1.15);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(-4deg) scale(1);
+    opacity: 0.92;
+  }
+}
+
+.animate-stamp {
+  animation: stampThud 150ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Report fade-in: opacity 0 to 1 over 200ms */
+@keyframes reportFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: reportFadeIn 200ms ease-in forwards;
+}
+
+/* Pulsing opacity for loading state (no spinner icon) */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 1.2s infinite ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-stamp,
+  .animate-fade-in,
+  .animate-subtle-pulse {
+    animation: none !important;
+  }
+}
+
+/* Subtle paper shadow allowed: 0 1px 0 rgba(0,0,0,0.06) */
+.paper-shadow {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Custom paper scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--paper-2);
+  border: 1px solid rgba(26, 26, 26, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-3);
+}

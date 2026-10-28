@@ -1,0 +1,6 @@
+{
+  "name": "TrustLens - AI Trust Checker for India",
+  "description": "Editorial AI trust desk analyzing suspicious UPI messages, fake job offers, KYC alerts, lottery scams, and greenwashing claims across India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
