@@ -3,8 +3,6 @@
 **An AI trust checker that analyzes messages, screenshots, and claims, flags scam or misleading signals, and tells users what to verify before they act.**
 
 **Live demo:** https://trustlens-india.ai.studio
-**Built for:** InnoVortex 4.0
-
 ---
 
 ## Problem
